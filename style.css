@@ -2215,3 +2215,27 @@ body::before {
   border-color: rgba(37,199,194,.38) !important;
   background: rgba(37,199,194,.06) !important;
 }
+
+.whatsapp-float-chat {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #25d366;
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  font-family: sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  transition: transform 0.2s ease;
+}
+
+.whatsapp-float-chat:hover {
+  transform: scale(1.05);
+  color: #fff;
+}
