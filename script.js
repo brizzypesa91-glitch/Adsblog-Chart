@@ -3316,7 +3316,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const customerCareBtns = document.querySelectorAll('.btn-customer-care');
   
   // Weka namba yako hapa chini (mfano: 2557XXXXXXXX)
-  const phoneNumber = "255667125960"; 
+  const phoneNumber = "255774444444"; // Badilisha na namba yako ya WhatsApp
   const message = encodeURIComponent("Habari boss, naomba unielekeze kuhusu Adsblog Chart");
 
   customerCareBtns.forEach(btn => {
