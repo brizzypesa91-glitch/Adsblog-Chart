@@ -1996,6 +1996,12 @@ function updateSalioUI() {
 
   }
 
+  const netProfitDisplay = document.getElementById("netProfitDisplay");
+  if (netProfitDisplay) {
+    netProfitDisplay.innerText =
+      `TZS ${(salio + totalWithdrawn).toLocaleString()}`;
+  }
+
 
   if (modalBalance) {
 
@@ -2023,101 +2029,112 @@ function updateSalioUI() {
    17. RENDER WAZUNGU
    ========================================================= */
 
+function getUnavailableWazunguIds() {
+  const ids = new Set();
+  wazunguData.forEach(person => {
+    if (
+      localStorage.getItem(`chat_started_${person.id}`) === "true" ||
+      localStorage.getItem(`chat_completed_${person.id}`) === "true"
+    ) {
+      ids.add(person.id);
+    }
+  });
+  return ids;
+}
+
+function shuffleWazungu(list) {
+  return [...list].sort(() => Math.random() - 0.5);
+}
+
 function renderWazungu() {
+  const container = document.getElementById("wazunguListContainer");
+  if (!container) return;
 
-  const container =
-    document.getElementById(
-      "wazunguListContainer"
-    );
+  const unavailable = getUnavailableWazunguIds();
+  const eligible = wazunguData.filter(person => !unavailable.has(person.id));
+  const visibleCount = Math.min(12, eligible.length);
 
+  if (!Array.isArray(window.__rotationPoolIds)) window.__rotationPoolIds = [];
+  if (!Array.isArray(window.__visibleWazunguIds)) window.__visibleWazunguIds = [];
 
-  if (!container) {
+  // Remove anyone who has started/completed a chat from every future rotation pool.
+  window.__rotationPoolIds = window.__rotationPoolIds.filter(id => eligible.some(p => p.id === id));
 
-    return;
-
+  // When the pool is empty, start a fresh cycle. Never include the currently visible
+  // people in the fresh cycle if there are enough other eligible people.
+  if (window.__rotationPoolIds.length === 0) {
+    const avoid = new Set(window.__visibleWazunguIds);
+    let fresh = eligible.filter(p => !avoid.has(p.id));
+    if (fresh.length < visibleCount) fresh = eligible.slice();
+    window.__rotationPoolIds = shuffleWazungu(fresh).map(p => p.id);
   }
 
+  // Take the next group from the rotation pool, so profiles are not repeated until
+  // the available pool has been exhausted.
+  let selectedIds = window.__rotationPoolIds.splice(0, visibleCount);
+  if (selectedIds.length < visibleCount) {
+    const already = new Set(selectedIds);
+    const fallback = shuffleWazungu(eligible.filter(p => !already.has(p.id) && !window.__visibleWazunguIds.includes(p.id)));
+    selectedIds.push(...fallback.slice(0, visibleCount - selectedIds.length).map(p => p.id));
+  }
 
-  container.innerHTML = "";
+  const visiblePartners = selectedIds
+    .map(id => eligible.find(person => person.id === id))
+    .filter(Boolean);
 
+  window.__visibleWazunguIds = visiblePartners.map(person => person.id);
+  container.classList.add("is-rotating");
 
-  wazunguData.forEach(
-    partner => {
+  setTimeout(() => {
+    container.innerHTML = "";
 
-      const completed =
-        localStorage.getItem(
-          `chat_completed_${partner.id}`
-        );
+    if (!visiblePartners.length) {
+      container.innerHTML = `
+        <div class="no-guests-card">
+          <strong>Hakuna wageni wapya kwa sasa</strong>
+          <span>Wageni wapya wataonekana hapa watakapopatikana.</span>
+        </div>`;
+      container.classList.remove("is-rotating");
+      return;
+    }
 
-
-      const card =
-        document.createElement(
-          "div"
-        );
-
-
-      card.className =
-        "mzungu-card";
-
+    visiblePartners.forEach(partner => {
+      const card = document.createElement("article");
+      card.className = "mzungu-card";
+      card.dataset.partnerId = partner.id;
+      const avatarUrl = `https://i.pravatar.cc/160?img=${partner.id + 10}`;
+      const topic = partner.interests?.slice(0, 2).join(" • ") || "Kiswahili • Mazungumzo";
 
       card.innerHTML = `
-
         <div class="mzungu-header">
-
-          <img
-            src="https://i.pravatar.cc/100?img=${partner.id + 10}"
-            class="avatar"
-            alt="${partner.name}"
-          >
-
+          <img src="${avatarUrl}" class="avatar" alt="${partner.name}, ${partner.age}" loading="lazy">
           <div class="mzungu-info">
-
-            <h4>
-              ${partner.flag}
-              ${partner.name},
-              ${partner.age}
-            </h4>
-
-            <div class="meta">
-              ${partner.country} • Online
-            </div>
-
-            <div class="price">
-              Zawadi: TZS 5,000 - 150,000
-            </div>
-
+            <h4>${partner.name}, ${partner.age}</h4>
+            <div class="meta"><span class="flag-text">${partner.flag}</span> ${partner.country}<span class="online-dot"></span> Online sasa</div>
+            <div class="profile-topic">${topic}</div>
           </div>
-
+          <div class="partner-price"><strong>TZS 8,500 – 180,000</strong></div>
         </div>
+        <div class="mzungu-bio">${partner.bio}</div>
+        <div class="mzungu-actions">
+          <button class="guest-action guest-chat" onclick="openTimeSelectModal(${partner.id})">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5 7.7 7.7 0 0 1-3.4-.8L5 20l1.2-3.5A7.5 7.5 0 1 1 20 11.5Z"/><path d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01"/></svg>
+            Chat
+          </button>
+          <button class="guest-action guest-voice" onclick="openTimeSelectModal(${partner.id})">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.7a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6A2 2 0 0 1 22 16.9Z"/></svg>
+            Voice
+          </button>
+          <button class="guest-action guest-video" onclick="openTimeSelectModal(${partner.id})">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="m16 10 5-3v10l-5-3z"/></svg>
+            Video
+          </button>
+        </div>`;
+      container.appendChild(card);
+    });
 
-        <div class="mzungu-bio">
-          ${partner.bio}
-        </div>
-
-        <button
-          class="btn-chat ${completed ? "completed" : ""}"
-          onclick="openTimeSelectModal(${partner.id})"
-          ${completed ? "disabled" : ""}
-        >
-
-          ${
-            completed
-              ? "✓ Chat Imekamilika"
-              : "Anza Chat"
-          }
-
-        </button>
-
-      `;
-
-
-      container.appendChild(
-        card
-      );
-
-    }
-  );
-
+    requestAnimationFrame(() => container.classList.remove("is-rotating"));
+  }, window.__visibleWazunguIds.length ? 180 : 0);
 }
 
 
@@ -2232,6 +2249,12 @@ function confirmStartChat(
     currentSelectedMzungu
   );
 
+  /* Once a guest has actually started a chat, never return that guest to rotations. */
+  localStorage.setItem(
+    `chat_started_${currentSelectedMzungu.id}`,
+    "true"
+  );
+
 
   closeModal(
     "timeSelectModal"
@@ -2295,6 +2318,9 @@ function confirmStartChat(
 
     chatModal.style.display =
       "flex";
+
+    // Hide floating actions while the user is inside the active chat room.
+    document.body.classList.add("chat-room-open");
 
   }
 
@@ -2865,6 +2891,10 @@ function closeModal(id) {
     modal.style.display =
       "none";
 
+    if (id === "chatRoomModal") {
+      document.body.classList.remove("chat-room-open");
+    }
+
   }
 
 }
@@ -3292,6 +3322,11 @@ document.addEventListener(
     updateSalioUI();
 
     renderWazungu();
+
+    /* Rotate the visible Wazungu cards every 5 seconds. */
+    setInterval(() => {
+      renderWazungu();
+    }, 5000);
 
 
     /* First notification */

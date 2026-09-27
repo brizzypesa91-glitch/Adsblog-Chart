@@ -2239,3 +2239,944 @@ body::before {
   transform: scale(1.05);
   color: #fff;
 }
+/* =========================================================
+   ADS BLOG CHAT — FINAL PREMIUM UI LAYER
+   UI/STYLING ONLY. Existing functionality and hooks remain intact.
+   ========================================================= */
+
+:root{
+  --bg:#061112;
+  --bg-soft:#091b1d;
+  --panel:#0b2022;
+  --panel-2:#0d2527;
+  --line:rgba(94,184,179,.18);
+  --line-strong:rgba(49,224,194,.42);
+  --text:#f4faf9;
+  --muted:#8ca8a6;
+  --green:#19d39a;
+  --green-2:#0caf7e;
+  --teal:#22c8bb;
+  --purple:#7756e8;
+  --gold:#f4c451;
+  --shadow:0 18px 45px rgba(0,0,0,.30);
+}
+
+body{
+  background:
+    radial-gradient(circle at 50% -15%,rgba(25,211,154,.10),transparent 31%),
+    radial-gradient(circle at 100% 55%,rgba(119,86,232,.06),transparent 25%),
+    linear-gradient(180deg,#071617 0%,#061112 55%,#040b0c 100%);
+}
+
+.app-container{
+  max-width:520px;
+  gap:13px;
+  padding-bottom:92px;
+}
+
+.lughapay-header{
+  padding:4px 4px 2px;
+}
+
+.logo-circle{
+  width:44px;height:44px;flex-basis:44px;
+  border-radius:14px;
+  color:#071614;
+  background:linear-gradient(145deg,#f8fffd,#bdece0);
+  border:1px solid rgba(255,255,255,.6);
+  box-shadow:0 10px 28px rgba(0,0,0,.25);
+}
+
+.brand-text h2{
+  font-size:20px;
+  letter-spacing:-.6px;
+}
+.brand-text h2::after{display:none}
+.brand-text p{color:#789391}
+
+.icon-circle{
+  width:40px;height:40px;
+  background:#0a1a1b;
+  border-color:rgba(102,177,171,.16);
+}
+
+.header-banner{
+  min-height:198px;
+  padding:24px 20px 20px;
+  border-radius:25px;
+  border-color:rgba(49,224,194,.18);
+  background:
+    radial-gradient(circle at 86% 45%,rgba(25,211,154,.11),transparent 25%),
+    linear-gradient(145deg,#0b2526,#08191b);
+  box-shadow:var(--shadow),inset 0 1px 0 rgba(255,255,255,.025);
+}
+
+.header-banner::before{
+  width:128px;height:128px;
+  right:-35px;top:25px;
+  background:radial-gradient(circle at 30% 30%,rgba(25,211,154,.18),transparent 50%),#0b2224;
+  border-color:rgba(49,224,194,.22);
+  box-shadow:0 0 45px rgba(25,211,154,.08),inset 0 0 35px rgba(0,0,0,.22);
+}
+.header-banner::after{display:none}
+
+.header-banner h2{
+  max-width:74%;
+  font-size:26px;
+}
+.header-banner h2 span{
+  color:var(--green);
+  text-shadow:none;
+}
+.header-banner p{
+  max-width:76%;
+  color:#8da9a6;
+  margin:11px 0 17px;
+}
+.btn-customer-care{
+  width:100%;
+  min-height:44px;
+  background:#142f31;
+  border:1px solid rgba(49,224,194,.22);
+  color:#eafaf7;
+  box-shadow:none;
+  display:flex !important;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+}
+.btn-customer-care:hover{
+  background:#173638;
+  box-shadow:0 8px 22px rgba(0,0,0,.18);
+}
+.inline-support-icon{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  color:#7ce9d0;
+}
+
+.cards-grid{gap:10px}
+.card{
+  min-height:118px;
+  padding:15px;
+  border-radius:20px;
+  background:linear-gradient(145deg,#0b2022,#091719);
+  border-color:rgba(93,179,174,.15);
+  box-shadow:0 12px 30px rgba(0,0,0,.20);
+}
+.card::after{display:none}
+.card-title{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  margin-bottom:8px;
+  color:#6ce2ca;
+  font-size:10px;
+}
+.card:nth-child(2) .card-title{color:#7fe2a5}
+.card-amount{
+  font-size:21px;
+  margin-bottom:10px;
+}
+.card-desc{min-height:27px;font-size:10px;color:#728d8a}
+.btn-action{
+  min-height:34px;
+  padding:7px 10px;
+  border-radius:18px;
+  background:#d9a92e;
+  color:#17200f;
+  box-shadow:none;
+  font-size:11px;
+}
+.ui-icon{
+  width:12px;height:12px;display:inline-block;position:relative;
+  border:1.6px solid currentColor;border-radius:3px;opacity:.95;
+}
+.wallet-icon::after{
+  content:"";position:absolute;right:-2px;top:3px;width:4px;height:4px;border:1px solid currentColor;border-radius:50%;
+}
+.withdraw-icon{border-radius:2px}
+.withdraw-icon::before{
+  content:"";position:absolute;left:5px;top:-5px;width:1.5px;height:9px;background:currentColor;
+  box-shadow:0 -1px 0 currentColor;
+}
+
+.btn-register-main{
+  min-height:50px;
+  padding:14px 18px;
+  border:1px solid rgba(25,211,154,.2);
+  border-radius:25px;
+  background:#15c998;
+  color:#031411;
+  box-shadow:0 12px 28px rgba(25,211,154,.12);
+}
+.btn-register-main:hover{
+  box-shadow:0 15px 32px rgba(25,211,154,.18);
+}
+
+.section-title{padding-top:3px}
+.section-title h3{font-size:20px}
+.section-title p{color:#75918e}
+
+.wazungu-list{
+  display:flex !important;
+  flex-direction:column !important;
+  gap:10px !important;
+  max-height:none !important;
+  overflow:visible !important;
+  padding:0 !important;
+  min-height:0 !important;
+  transition:opacity .22s ease,transform .22s ease;
+}
+.wazungu-list.is-rotating{
+  opacity:.12;
+  transform:translateY(3px);
+}
+
+.mzungu-card{
+  width:100% !important;
+  min-height:0 !important;
+  height:auto !important;
+  padding:13px !important;
+  border-radius:19px !important;
+  background:linear-gradient(145deg,#0b2022,#091719) !important;
+  border:1px solid rgba(93,179,174,.15) !important;
+  box-shadow:0 10px 27px rgba(0,0,0,.18),inset 0 1px 0 rgba(255,255,255,.02) !important;
+  transition:transform .2s ease,border-color .2s ease !important;
+}
+.mzungu-card:hover{
+  transform:translateY(-1px);
+  border-color:rgba(25,211,154,.30) !important;
+}
+.mzungu-header{
+  gap:10px;
+  margin-bottom:8px;
+}
+.avatar{
+  width:54px;height:54px;flex-basis:54px;
+  border:2px solid rgba(25,211,154,.32);
+  box-shadow:0 0 0 3px rgba(25,211,154,.04);
+}
+.mzungu-info h4{font-size:15px}
+.mzungu-info .meta{font-size:10px;margin-top:3px}
+.mzungu-info .meta::after{width:5px;height:5px;margin-left:4px}
+.profile-topic{
+  display:flex;align-items:center;gap:5px;
+  margin-top:5px;
+  color:#7f9a97;
+  font-size:10px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.topic-icon{display:inline-flex;color:#7ddfca;flex:0 0 auto}
+.mzungu-bio{
+  min-height:0;
+  margin:0 0 10px;
+  color:#819b98;
+  font-size:10.5px;
+  line-height:1.4;
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+.mzungu-footer{
+  display:grid;
+  grid-template-columns:1fr 132px;
+  gap:9px;
+  align-items:end;
+}
+.partner-price{
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  gap:3px;
+  padding:9px 10px;
+  border-radius:12px;
+  background:#0d292a;
+  border:1px solid rgba(25,211,154,.13);
+}
+.price-label{
+  color:#6e8b87;
+  font-size:9px;
+}
+.partner-price strong{
+  color:#f4c451;
+  font-size:11px;
+  font-weight:900;
+  white-space:nowrap;
+}
+.btn-chat{
+  min-height:40px !important;
+  border-radius:13px !important;
+  padding:8px 10px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:7px !important;
+  border:1px solid rgba(25,211,154,.18) !important;
+  color:#031411 !important;
+  background:#16c998 !important;
+  box-shadow:none !important;
+  font-size:11px !important;
+}
+.btn-chat:hover{
+  background:#1ad6a2 !important;
+  box-shadow:0 8px 20px rgba(25,211,154,.13) !important;
+}
+.chat-arrow{font-size:15px;line-height:1}
+.btn-chat.completed{
+  color:#738a88 !important;
+  background:#132324 !important;
+  border-color:rgba(107,137,133,.18) !important;
+}
+
+.support-section-card{
+  display:none !important;
+}
+.extra-card,.reviews-section-card{border-radius:20px}
+.extra-card{padding:15px}
+.extra-card h4{font-size:13px}
+.reviews-section-card{padding:17px 15px}
+.reviews-header-text h3{font-size:18px}
+
+.floating-actions{
+  position:fixed;
+  z-index:999999;
+  left:50%;
+  bottom:max(12px,env(safe-area-inset-bottom));
+  transform:translateX(-50%);
+  width:min(calc(100% - 24px),500px);
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  pointer-events:none;
+}
+.quick-action{
+  pointer-events:auto;
+  min-width:0;
+  min-height:46px;
+  padding:9px 11px;
+  border-radius:16px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  color:#fff;
+  text-decoration:none;
+  font-size:11px;
+  font-weight:850;
+  letter-spacing:-.1px;
+  box-shadow:0 12px 30px rgba(0,0,0,.32);
+  border:1px solid rgba(255,255,255,.12);
+  transition:transform .18s ease,filter .18s ease;
+}
+.quick-action:hover{transform:translateY(-1px);filter:brightness(1.05)}
+.quick-action-icon{
+  width:29px;height:29px;flex:0 0 29px;
+  border-radius:10px;
+  display:grid;place-items:center;
+  background:rgba(255,255,255,.14);
+}
+.quick-care{background:#7654e8}
+.quick-whatsapp{background:#19c997}
+.quick-whatsapp .quick-action-icon{background:rgba(0,0,0,.10)}
+
+@media (max-width:390px){
+  .app-container{padding-bottom:86px}
+  .mzungu-footer{grid-template-columns:1fr 122px}
+  .partner-price{padding:8px}
+  .partner-price strong{font-size:10px}
+  .quick-action{font-size:10px}
+}
+
+/* =========================================================
+   ADS BLOG CHAT — REFERENCE LAYOUT PASS
+   Keep the existing logic/hooks; this block only changes presentation.
+   ========================================================= */
+:root{
+  --abc-bg:#070d22;
+  --abc-panel:#101a34;
+  --abc-line:rgba(114,145,220,.22);
+  --abc-text:#f7f8ff;
+  --abc-muted:#8e9ab7;
+  --abc-green:#18e887;
+  --abc-blue:#2587dc;
+  --abc-red:#bd4053;
+  --abc-purple:#7657ee;
+}
+
+body{
+  padding:10px 10px 34px;
+  background:
+    radial-gradient(circle at 15% 0%,rgba(96,70,220,.18),transparent 27%),
+    radial-gradient(circle at 100% 30%,rgba(0,145,255,.12),transparent 26%),
+    #070d22;
+}
+
+.app-container{
+  max-width:680px;
+  gap:14px;
+  padding-bottom:112px;
+}
+
+.lughapay-header{
+  padding:8px 5px 4px;
+}
+.logo-circle{
+  width:58px;height:58px;flex-basis:58px;
+  background:#111a39;
+  border:1px solid rgba(131,103,255,.45);
+  color:#d8d0ff;
+  box-shadow:0 0 0 6px rgba(118,87,238,.08),0 10px 30px rgba(0,0,0,.3);
+}
+.brand-text h2{font-size:22px;color:#fff}
+.brand-text h2::after{display:inline-block}
+.brand-text p{font-size:12px;color:#98a3bf}
+.icon-circle{width:46px;height:46px;background:#131b38;border-color:rgba(142,159,212,.20)}
+
+.header-banner{
+  min-height:298px;
+  padding:31px 30px 25px;
+  border-radius:30px;
+  background:
+    radial-gradient(circle at 88% 40%,rgba(34,126,255,.34),transparent 29%),
+    linear-gradient(135deg,#1b1d62 0%,#173e9a 48%,#0c789b 100%);
+  border:1px solid rgba(97,168,255,.35);
+  box-shadow:0 18px 45px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.10);
+}
+.header-banner::before{
+  width:170px;height:170px;right:-34px;top:38px;
+  background:radial-gradient(circle at 50% 50%,rgba(255,255,255,.12),rgba(31,87,174,.18) 48%,transparent 49%);
+  border:1px solid rgba(136,184,255,.18);
+  box-shadow:none;
+}
+.header-banner h2{
+  max-width:72%;
+  font-size:32px;
+  line-height:1.08;
+  letter-spacing:-1.2px;
+}
+.header-banner h2 span{color:#20ed8d}
+.header-banner p{
+  max-width:78%;
+  margin:15px 0 23px;
+  color:#d5dbed;
+  font-size:14px;
+  line-height:1.6;
+}
+.btn-customer-care{
+  width:auto !important;
+  min-height:48px;
+  padding:0 20px;
+  border-radius:26px;
+  background:#16df78 !important;
+  border:0 !important;
+  color:#071624 !important;
+  font-weight:900;
+  box-shadow:0 10px 25px rgba(0,0,0,.18) !important;
+}
+.btn-customer-care .inline-support-icon{color:#071624}
+
+.cards-grid{
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:10px;
+}
+.card{
+  min-height:144px;
+  padding:15px 13px 13px;
+  border-radius:22px;
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow:0 12px 26px rgba(0,0,0,.20);
+}
+.card:nth-child(1){background:linear-gradient(145deg,#087d6b,#096e68)}
+.card:nth-child(2){background:linear-gradient(145deg,#176ab2,#1d579b)}
+.card:nth-child(3){background:linear-gradient(145deg,#9c3348,#ad4053)}
+.card-title{color:rgba(255,255,255,.78) !important;font-size:10px;letter-spacing:.4px}
+.card-amount{font-size:21px;color:#fff}
+.card-desc{color:rgba(255,255,255,.65);font-size:10px}
+.btn-action{
+  background:#16df78;
+  color:#062019;
+  min-height:37px;
+  font-weight:900;
+  width:100%;
+}
+
+.btn-register-main{
+  min-height:60px;
+  border:0;
+  border-radius:32px;
+  background:#18e887;
+  color:#071b16;
+  box-shadow:0 12px 28px rgba(24,232,135,.16);
+  font-size:17px;
+  font-weight:950;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:18px;
+}
+.btn-register-main span{font-size:28px;line-height:1;font-weight:500}
+
+.section-title{
+  padding:2px 3px 0;
+  display:flex;
+  flex-direction:column;
+  gap:3px;
+}
+.section-title h3{font-size:24px;line-height:1.05;color:#fff}
+.section-title p{font-size:12px;color:#8794b1}
+
+.wazungu-list{
+  display:flex !important;
+  flex-direction:column !important;
+  gap:12px !important;
+  max-height:none !important;
+  overflow:visible !important;
+  min-height:0 !important;
+  padding:0 2px !important;
+  transition:opacity .18s ease,transform .18s ease;
+}
+.wazungu-list.is-rotating{opacity:.2;transform:translateY(3px)}
+
+.mzungu-card{
+  width:100% !important;
+  min-height:0 !important;
+  padding:14px !important;
+  border-radius:22px !important;
+  background:#0d162b !important;
+  border:1px solid rgba(104,140,207,.22) !important;
+  box-shadow:0 13px 28px rgba(0,0,0,.20),inset 0 1px 0 rgba(255,255,255,.025) !important;
+}
+.mzungu-header{
+  display:grid;
+  grid-template-columns:58px minmax(0,1fr) auto;
+  align-items:center;
+  gap:11px;
+  margin-bottom:9px;
+}
+.avatar{
+  width:58px;height:58px;flex-basis:58px;
+  border:2px solid #1ae18a;
+  box-shadow:0 0 0 3px rgba(24,232,135,.08);
+}
+.mzungu-info h4{font-size:17px;color:#fff;line-height:1.15}
+.mzungu-info .meta{font-size:10.5px;color:#8795b0;margin-top:4px;white-space:nowrap}
+.flag-text{font-size:12px}
+.online-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#19e487;margin:0 4px 1px 7px;box-shadow:0 0 7px rgba(25,228,135,.55)}
+.profile-topic{margin-top:5px;font-size:10px;color:#8d9bb7}
+.partner-price{
+  min-width:118px;
+  padding:8px 9px;
+  border-radius:12px;
+  background:rgba(143,101,35,.14);
+  border:1px solid rgba(228,176,66,.22);
+  text-align:right;
+}
+.partner-price span{display:block;color:#8e96a8;font-size:8px;text-transform:uppercase;letter-spacing:.5px}
+.partner-price strong{font-size:10px;color:#ffd55c}
+.mzungu-bio{
+  margin:0 0 11px;
+  min-height:0;
+  font-size:10.5px;
+  line-height:1.4;
+  color:#8795af;
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+.mzungu-actions{
+  display:grid;
+  grid-template-columns:1.25fr 1fr 1fr;
+  gap:8px;
+}
+.guest-action{
+  min-height:47px;
+  border:0;
+  border-radius:15px;
+  color:#fff;
+  font-size:12px;
+  font-weight:900;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  cursor:pointer;
+}
+.guest-chat{
+  background:transparent;
+  color:#18e887;
+  border:2px solid #18e887;
+  font-size:16px;
+}
+.guest-voice{background:#2e83d0}
+.guest-video{background:#c9672d}
+.guest-action:active{transform:scale(.985)}
+
+.no-guests-card{
+  padding:22px 16px;
+  border-radius:18px;
+  background:#0d162b;
+  border:1px solid rgba(104,140,207,.22);
+  text-align:center;
+  color:#dfe5f3;
+}
+.no-guests-card strong,.no-guests-card span{display:block}
+.no-guests-card span{margin-top:5px;color:#8492ad;font-size:11px}
+
+.support-section-card{display:none !important}
+.extra-card,.reviews-section-card{border-radius:20px}
+
+.floating-actions{
+  left:50%;
+  bottom:max(12px,env(safe-area-inset-bottom));
+  width:min(calc(100% - 26px),620px);
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  padding:0;
+}
+.quick-action{
+  min-height:52px;
+  border-radius:17px;
+  border:0;
+  font-size:12px;
+  box-shadow:0 14px 32px rgba(0,0,0,.35);
+}
+.quick-care{background:#7654e8}
+.quick-whatsapp{background:#18d97b}
+.quick-action-icon{width:31px;height:31px;border-radius:10px;background:rgba(255,255,255,.15)}
+
+@media(max-width:560px){
+  .header-banner{min-height:285px;padding:27px 23px 22px}
+  .header-banner h2{font-size:28px;max-width:78%}
+  .header-banner p{font-size:12.5px;max-width:86%}
+  .cards-grid{gap:8px}
+  .card{min-height:142px;padding:13px 10px}
+  .card-title{font-size:9px}
+  .card-amount{font-size:19px}
+  .mzungu-header{grid-template-columns:52px minmax(0,1fr);}
+  .avatar{width:52px;height:52px}
+  .partner-price{grid-column:1 / -1;justify-self:end;margin-top:-2px}
+  .mzungu-actions{grid-template-columns:1.25fr 1fr 1fr;gap:7px}
+  .guest-action{min-height:45px;font-size:11px}
+  .guest-chat{font-size:15px}
+}
+
+@media(max-width:390px){
+  .header-banner h2{font-size:25px}
+  .header-banner p{font-size:11.5px}
+  .card{min-height:136px}
+  .card-amount{font-size:17px}
+  .btn-register-main{font-size:15px}
+  .mzungu-card{padding:12px !important}
+  .mzungu-info h4{font-size:15px}
+  .guest-action{min-height:43px;font-size:10px}
+  .guest-action svg{width:16px;height:16px}
+  .quick-action{min-height:49px;font-size:10px}
+}
+
+/* =========================================================
+   FINAL MINIMAL THEME — intentionally different from reference
+   ========================================================= */
+:root{
+  --vp-bg:#0f1115;
+  --vp-panel:#171a20;
+  --vp-panel-2:#1d2129;
+  --vp-line:#2c323d;
+  --vp-text:#f3f1ea;
+  --vp-muted:#949aa6;
+  --vp-cyan:#4ed7d0;
+  --vp-amber:#f2b84b;
+  --vp-coral:#ef786f;
+  --vp-blue:#5b8def;
+}
+body{
+  background:#0f1115 !important;
+  color:var(--vp-text) !important;
+}
+body::before,body::after{display:none !important}
+.app-container{max-width:680px !important}
+.lughapay-header{
+  background:#15181e !important;
+  border:1px solid #282e38 !important;
+  box-shadow:0 8px 24px rgba(0,0,0,.18) !important;
+  border-radius:18px !important;
+  padding:10px 12px !important;
+  margin-bottom:10px !important;
+}
+.logo-circle{
+  width:38px !important;height:38px !important;flex-basis:38px !important;
+  border-radius:11px !important;
+  background:#242932 !important;color:var(--vp-cyan) !important;
+  border:1px solid #3a424e !important;box-shadow:none !important;
+}
+.brand-text h2{font-size:18px !important;color:#f5f3ed !important}
+.brand-text h2::after{display:none !important}
+.brand-text p{font-size:10px !important;color:#8e96a2 !important}
+.icon-circle{width:36px !important;height:36px !important;background:#1c2027 !important;border-color:#303640 !important}
+
+.header-banner{
+  min-height:0 !important;
+  padding:20px !important;
+  border-radius:20px !important;
+  background:#181c22 !important;
+  border:1px solid #2e3540 !important;
+  box-shadow:none !important;
+}
+.header-banner::before{display:none !important}
+.header-banner h2{
+  max-width:90% !important;font-size:25px !important;line-height:1.08 !important;
+  letter-spacing:-.7px !important;color:#f5f3ed !important;
+}
+.header-banner h2 span{color:var(--vp-cyan) !important;text-shadow:none !important}
+.header-banner p{max-width:92% !important;margin:9px 0 14px !important;font-size:11px !important;line-height:1.5 !important;color:#969da8 !important}
+.btn-customer-care{
+  width:auto !important;min-height:38px !important;padding:0 14px !important;
+  border-radius:12px !important;background:#252a32 !important;color:#f2f0e9 !important;
+  border:1px solid #3a424e !important;box-shadow:none !important;font-size:11px !important;
+}
+.btn-customer-care .inline-support-icon{color:var(--vp-cyan) !important}
+
+.cards-grid{grid-template-columns:repeat(3,minmax(0,1fr)) !important;gap:7px !important;margin-top:9px !important}
+.card{
+  min-height:88px !important;height:88px !important;padding:10px !important;
+  border-radius:14px !important;background:#171a20 !important;
+  border:1px solid #2c323d !important;box-shadow:none !important;
+}
+.card:nth-child(1),.card:nth-child(2),.card:nth-child(3){background:#171a20 !important}
+.card-title{font-size:8px !important;letter-spacing:.5px !important;color:#aab0ba !important;margin-bottom:5px !important}
+.card-amount{font-size:16px !important;line-height:1.1 !important;color:#f5f3ed !important;margin-bottom:4px !important}
+.card-desc{font-size:8px !important;min-height:0 !important;color:#777f8b !important}
+.btn-action{min-height:25px !important;padding:4px 8px !important;border-radius:9px !important;font-size:9px !important;background:#242a33 !important;color:var(--vp-cyan) !important;border:1px solid #37404b !important}
+.ui-icon{width:10px !important;height:10px !important}
+
+.btn-register-main{
+  min-height:46px !important;margin-top:9px !important;border-radius:13px !important;
+  background:var(--vp-cyan) !important;color:#0d1718 !important;box-shadow:none !important;
+  font-size:14px !important;font-weight:900 !important;gap:12px !important;
+}
+.btn-register-main span{font-size:21px !important}
+
+.section-title{padding:14px 2px 6px !important}
+.section-title h3{font-size:19px !important;color:#f3f1ea !important}
+.section-title p{font-size:10px !important;color:#858c97 !important}
+
+.wazungu-list{gap:8px !important;padding:0 !important}
+.mzungu-card{
+  padding:10px !important;border-radius:15px !important;
+  background:#171a20 !important;border:1px solid #2c323d !important;
+  box-shadow:none !important;
+}
+.mzungu-header{grid-template-columns:42px minmax(0,1fr) auto !important;gap:8px !important;margin-bottom:6px !important}
+.avatar{width:42px !important;height:42px !important;border:1px solid #47515e !important;box-shadow:none !important}
+.mzungu-info h4{font-size:13px !important;color:#f1efe9 !important}
+.mzungu-info .meta{font-size:8.5px !important;color:#858d99 !important;margin-top:2px !important}
+.online-dot{width:5px !important;height:5px !important;background:#55d6a2 !important;box-shadow:none !important;margin-left:5px !important}
+.profile-topic{font-size:8px !important;color:#747c88 !important;margin-top:3px !important}
+.partner-price{
+  min-width:auto !important;padding:6px 7px !important;border-radius:9px !important;
+  background:#20232a !important;border:1px solid #3b3d3d !important;text-align:right !important;
+}
+.partner-price span{font-size:7px !important;color:#747b85 !important}
+.partner-price strong{font-size:8.5px !important;color:var(--vp-amber) !important}
+.mzungu-bio{margin:0 0 7px !important;font-size:8.5px !important;line-height:1.35 !important;color:#7e8692 !important;-webkit-line-clamp:1 !important}
+.mzungu-actions{grid-template-columns:1.15fr 1fr 1fr !important;gap:5px !important}
+.guest-action{min-height:32px !important;border-radius:9px !important;font-size:9px !important;gap:4px !important}
+.guest-chat{font-size:10px !important;color:#0f1718 !important;background:var(--vp-cyan) !important;border:0 !important}
+.guest-voice{background:#3a5e9f !important}
+.guest-video{background:#a85d4c !important}
+
+.support-section-card{display:none !important}
+.extra-card,.reviews-section-card{border-radius:15px !important;background:#171a20 !important;border:1px solid #2c323d !important;box-shadow:none !important}
+
+.floating-actions{width:min(calc(100% - 22px),640px) !important;gap:7px !important;bottom:max(10px,env(safe-area-inset-bottom)) !important}
+.quick-action{min-height:43px !important;border-radius:12px !important;font-size:10px !important;box-shadow:0 8px 20px rgba(0,0,0,.35) !important}
+.quick-care{background:#5968b8 !important}
+.quick-whatsapp{background:#2c9d78 !important}
+.quick-action-icon{width:27px !important;height:27px !important;border-radius:8px !important}
+
+@media(max-width:560px){
+  .app-container{padding-left:10px !important;padding-right:10px !important}
+  .header-banner{padding:17px !important}
+  .header-banner h2{font-size:22px !important}
+  .cards-grid{gap:6px !important}
+  .card{height:82px !important;min-height:82px !important;padding:8px !important}
+  .card-title{font-size:7.5px !important}
+  .card-amount{font-size:15px !important}
+  .card-desc{font-size:7.5px !important}
+  .btn-action{font-size:8px !important;min-height:23px !important}
+  .mzungu-header{grid-template-columns:40px minmax(0,1fr) auto !important}
+  .avatar{width:40px !important;height:40px !important}
+  .mzungu-card{padding:9px !important}
+  .partner-price{align-self:start !important}
+  .mzungu-actions{gap:4px !important}
+  .guest-action{min-height:30px !important;font-size:8.5px !important}
+  .quick-action{min-height:41px !important;font-size:9px !important}
+}
+
+
+/* =========================================================
+   ADS BLOG CHAT — PREMIUM FINANCIAL CLAYMORPHISM PASS
+   Visual-only refinement. Existing layout/hooks remain intact.
+   ========================================================= */
+:root{
+  --clay-bg:#0b0e14;
+  --clay-surface:#171b23;
+  --clay-surface-2:#1c212b;
+  --clay-line:rgba(255,255,255,.065);
+  --clay-text:#f5f7fb;
+  --clay-muted:#8e98a8;
+  --clay-violet:#8b6cff;
+  --clay-cyan:#46c7ff;
+  --clay-green:#35d39a;
+  --clay-amber:#f2b84b;
+  --clay-red:#ef6576;
+}
+
+html{background:var(--clay-bg)!important}
+body{
+  background:
+    radial-gradient(circle at 12% -5%,rgba(139,108,255,.12),transparent 28%),
+    radial-gradient(circle at 100% 20%,rgba(70,199,255,.08),transparent 25%),
+    linear-gradient(180deg,#0e1118 0%,#090c12 100%)!important;
+  color:var(--clay-text)!important;
+}
+body::before{display:none!important}
+.app-container{max-width:680px!important;gap:11px!important;padding-bottom:94px!important}
+
+/* Header */
+.lughapay-header{padding:4px 3px 3px!important}
+.logo-circle{
+  width:46px!important;height:46px!important;flex-basis:46px!important;
+  border-radius:15px!important;
+  color:#fff!important;
+  background:#202631!important;
+  border:1px solid var(--clay-line)!important;
+  box-shadow:inset 4px 4px 9px rgba(0,0,0,.35),inset -4px -4px 9px rgba(255,255,255,.035),0 9px 22px rgba(0,0,0,.28)!important;
+}
+.brand-text h2{font-size:20px!important;color:#f7f8fb!important}
+.brand-text h2::after{background:var(--clay-green)!important;box-shadow:0 0 10px rgba(53,211,154,.45)!important}
+.brand-text p{color:#8f99a8!important}
+.icon-circle{
+  width:40px!important;height:40px!important;
+  background:#191e27!important;border-color:var(--clay-line)!important;
+  box-shadow:inset 3px 3px 7px rgba(0,0,0,.28),inset -3px -3px 7px rgba(255,255,255,.025)!important;
+}
+
+/* Compact clay hero */
+.header-banner{
+  min-height:0!important;
+  padding:20px!important;
+  border-radius:22px!important;
+  border:1px solid rgba(139,108,255,.16)!important;
+  background:#171c25!important;
+  box-shadow:10px 10px 24px rgba(0,0,0,.32),-7px -7px 18px rgba(255,255,255,.025),inset 0 1px 0 rgba(255,255,255,.025)!important;
+}
+.header-banner::before{
+  width:118px!important;height:118px!important;right:-38px!important;top:22px!important;
+  background:radial-gradient(circle at 35% 35%,rgba(139,108,255,.17),transparent 55%),#1b202a!important;
+  border:1px solid rgba(139,108,255,.14)!important;
+  box-shadow:inset 5px 5px 12px rgba(0,0,0,.22),inset -5px -5px 12px rgba(255,255,255,.025)!important;
+}
+.header-banner h2{max-width:78%!important;font-size:24px!important;letter-spacing:-.8px!important}
+.header-banner h2 span{color:var(--clay-violet)!important;text-shadow:none!important}
+.header-banner p{max-width:78%!important;margin:9px 0 13px!important;font-size:11px!important;line-height:1.45!important;color:#9aa3b1!important}
+.btn-customer-care{
+  width:auto!important;min-height:38px!important;padding:0 14px!important;border-radius:13px!important;
+  background:#202631!important;border:1px solid rgba(70,199,255,.15)!important;color:#eaf0f7!important;
+  box-shadow:inset 3px 3px 8px rgba(0,0,0,.3),inset -3px -3px 8px rgba(255,255,255,.025),0 8px 18px rgba(0,0,0,.22)!important;
+  font-size:11px!important;
+}
+.btn-customer-care .inline-support-icon{color:var(--clay-cyan)!important}
+
+/* Mini financial tiles */
+.cards-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:7px!important}
+.card{
+  min-height:86px!important;padding:11px!important;border-radius:16px!important;
+  background:#171c24!important;border:1px solid var(--clay-line)!important;
+  box-shadow:7px 7px 16px rgba(0,0,0,.3),-5px -5px 12px rgba(255,255,255,.022),inset 0 1px 0 rgba(255,255,255,.02)!important;
+}
+.card-title{font-size:8.5px!important;margin-bottom:6px!important;color:#a9b1be!important;letter-spacing:.35px!important}
+.card:nth-child(1) .card-title{color:var(--clay-violet)!important}
+.card:nth-child(2) .card-title{color:var(--clay-cyan)!important}
+.card:nth-child(3) .card-title{color:var(--clay-red)!important}
+.card-amount{font-size:16px!important;margin-bottom:6px!important;letter-spacing:-.3px!important}
+.card-desc{min-height:15px!important;font-size:8px!important;color:#707a89!important}
+.btn-action{
+  min-height:27px!important;padding:5px 8px!important;border-radius:9px!important;font-size:9px!important;
+  background:var(--clay-amber)!important;color:#17120a!important;
+  box-shadow:inset 2px 2px 5px rgba(255,255,255,.16),inset -2px -2px 5px rgba(0,0,0,.15),0 6px 14px rgba(242,184,75,.14)!important;
+}
+
+/* Registration CTA */
+.btn-register-main{
+  min-height:45px!important;padding:12px 16px!important;border-radius:15px!important;
+  background:var(--clay-green)!important;color:#07140f!important;border:0!important;
+  box-shadow:7px 7px 16px rgba(0,0,0,.28),-4px -4px 10px rgba(255,255,255,.035),inset 0 1px 0 rgba(255,255,255,.15)!important;
+  font-size:14px!important;
+}
+.btn-register-main::after{font-size:21px!important;right:17px!important}
+
+/* Guest list: compact financial-app cards */
+.section-title{padding:2px 1px 0!important}
+.section-title h3{font-size:18px!important}
+.section-title p{font-size:10px!important;color:#747f8e!important}
+.wazungu-list{gap:7px!important}
+.mzungu-card{
+  padding:10px!important;border-radius:15px!important;
+  background:#151a22!important;border:1px solid var(--clay-line)!important;
+  box-shadow:7px 7px 16px rgba(0,0,0,.28),-4px -4px 10px rgba(255,255,255,.02),inset 0 1px 0 rgba(255,255,255,.02)!important;
+}
+.mzungu-header{gap:8px!important;margin-bottom:5px!important}
+.avatar{width:43px!important;height:43px!important;flex-basis:43px!important;border:2px solid rgba(70,199,255,.28)!important;box-shadow:0 0 0 2px rgba(70,199,255,.035)!important}
+.mzungu-info h4{font-size:13px!important}
+.mzungu-info .meta{font-size:9px!important;margin-top:2px!important;color:#8d97a5!important}
+.profile-topic{margin-top:3px!important;font-size:8.5px!important;color:#727c8b!important}
+.mzungu-bio{font-size:9px!important;line-height:1.3!important;margin:0 0 7px!important}
+.mzungu-footer{grid-template-columns:1fr 118px!important;gap:7px!important}
+.partner-price{padding:7px 8px!important;border-radius:10px!important;background:#1b2028!important;border:1px solid rgba(242,184,75,.12)!important}
+.price-label{font-size:7px!important;color:#707987!important}
+.partner-price strong{font-size:10px!important;color:var(--clay-amber)!important}
+.btn-chat{min-height:34px!important;border-radius:10px!important;font-size:10px!important;background:var(--clay-violet)!important;color:#fff!important;border:0!important;box-shadow:inset 2px 2px 6px rgba(255,255,255,.12),inset -2px -2px 6px rgba(0,0,0,.18)!important}
+
+/* Hide redundant lower support block; floating actions are the contact controls */
+.support-section-card{display:none!important}
+
+/* Floating actions */
+.floating-actions{bottom:max(10px,env(safe-area-inset-bottom))!important;width:min(calc(100% - 22px),520px)!important;gap:7px!important}
+.quick-action{min-height:42px!important;border-radius:14px!important;font-size:10px!important;box-shadow:7px 7px 16px rgba(0,0,0,.32),-4px -4px 9px rgba(255,255,255,.025)!important}
+.quick-care{background:#7658e8!important}
+.quick-whatsapp{background:#24c98d!important}
+.quick-action-icon{width:27px!important;height:27px!important;border-radius:9px!important}
+
+/* Never cover the chat room with floating controls */
+body.chat-room-open .floating-actions{display:none!important}
+
+/* Premium clay chat room */
+.modal-overlay{background:rgba(5,7,11,.86)!important;backdrop-filter:blur(14px)!important}
+.chat-room-card,.modal-card{
+  background:#171c24!important;border:1px solid rgba(255,255,255,.07)!important;
+  box-shadow:14px 14px 34px rgba(0,0,0,.45),-8px -8px 22px rgba(255,255,255,.025),inset 0 1px 0 rgba(255,255,255,.025)!important;
+}
+.chat-header{background:#1b2029!important;border-bottom-color:rgba(255,255,255,.055)!important}
+.chat-input-area{background:#151a21!important;border-top-color:rgba(255,255,255,.055)!important}
+.chat-input-area button{background:var(--clay-violet)!important;border:0!important}
+
+@media(max-width:520px){
+  .app-container{gap:9px!important}
+  .header-banner{padding:17px!important;border-radius:19px!important}
+  .header-banner h2{font-size:21px!important}
+  .header-banner p{font-size:10px!important}
+  .cards-grid{gap:5px!important}
+  .card{padding:9px!important;min-height:78px!important;border-radius:14px!important}
+  .card-title{font-size:7.5px!important}
+  .card-amount{font-size:14px!important}
+  .btn-action{font-size:8px!important;min-height:25px!important}
+  .mzungu-footer{grid-template-columns:1fr 108px!important}
+  .partner-price strong{font-size:9px!important}
+  .btn-chat{font-size:9px!important}
+}
