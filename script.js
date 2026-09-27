@@ -2925,75 +2925,124 @@ function openWithdrawModal() {
 }
 
 
-function handleWithdrawSubmit(e) {
+function openTutorialModal(id) {
+  const modal = document.getElementById(id);
+  if (!modal) return;
+  modal.style.display = "flex";
+  modal.setAttribute("aria-hidden", "false");
+  document.body.classList.add("tutorial-open");
 
+  const video = modal.querySelector("video");
+  if (video) {
+    video.currentTime = 0;
+    video.muted = true;
+    const playPromise = video.play();
+    if (playPromise && typeof playPromise.catch === "function") {
+      playPromise.catch(() => {});
+    }
+  }
+}
+
+function closeTutorialModal(id) {
+  const modal = document.getElementById(id);
+  if (!modal) return;
+  const video = modal.querySelector("video");
+  if (video) {
+    video.pause();
+    video.currentTime = 0;
+  }
+  modal.style.display = "none";
+  modal.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("tutorial-open");
+}
+
+function makeWithdrawalReference() {
+  const stamp = Date.now().toString().slice(-6);
+  return `VP-${stamp}`;
+}
+
+function maskPhoneNumber(phone) {
+  if (!phone) return "—";
+  const clean = String(phone).trim();
+  if (clean.length <= 4) return clean;
+  return `${clean.slice(0, 3)}••••${clean.slice(-3)}`;
+}
+
+function showWithdrawalReceipt(amount, network, phone, accountName) {
+  const modal = document.getElementById("withdrawReceiptModal");
+  if (!modal) return;
+
+  const title = document.getElementById("withdrawReceiptTitle");
+  const message = document.getElementById("withdrawReceiptMessage");
+  const icon = document.getElementById("withdrawReceiptIcon");
+  const footer = document.getElementById("receiptFooter");
+  const progress = document.getElementById("receiptProgressBar");
+
+  document.getElementById("receiptAmount").textContent = `TZS ${amount.toLocaleString()}`;
+  document.getElementById("receiptNetwork").textContent = network || "—";
+  document.getElementById("receiptPhone").textContent = maskPhoneNumber(phone);
+  document.getElementById("receiptAccount").textContent = accountName || "—";
+  document.getElementById("receiptReference").textContent = makeWithdrawalReference();
+
+  title.textContent = "Ombi linatumwa...";
+  message.textContent = "Tafadhali subiri tunatuma taarifa za ombi lako.";
+  footer.textContent = "Inachakata ombi...";
+  icon.classList.remove("is-success", "is-warning");
+  icon.innerHTML = '<span class="receipt-spinner"></span>';
+  progress.style.width = "15%";
+
+  modal.style.display = "flex";
+  modal.setAttribute("aria-hidden", "false");
+
+  requestAnimationFrame(() => {
+    progress.style.width = "72%";
+  });
+
+  setTimeout(() => {
+    title.textContent = "Ombi limewasilishwa";
+    message.textContent = "Taarifa zako zimepokelewa na ombi linaendelea kuthibitishwa.";
+    footer.textContent = "Ombi limepokelewa";
+    icon.classList.add("is-success");
+    icon.innerHTML = '<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4 4L19 6"/></svg>';
+    progress.style.width = "100%";
+  }, 1700);
+
+  // Preserve the existing verification flow after the receipt/status animation.
+  setTimeout(() => {
+    modal.style.display = "none";
+    modal.setAttribute("aria-hidden", "true");
+    const errorModal = document.getElementById("errorModal");
+    if (errorModal) errorModal.style.display = "flex";
+  }, 3000);
+}
+
+function handleWithdrawSubmit(e) {
   e.preventDefault();
 
+  const amountInput = document.getElementById("withdrawAmount");
+  const networkInput = document.getElementById("withdrawNetwork");
+  const phoneInput = document.getElementById("withdrawPhone");
+  const accountInput = document.getElementById("withdrawAccountName");
 
-  const amountInput =
-    document.getElementById(
-      "withdrawAmount"
-    );
+  if (!amountInput) return;
 
+  const amount = parseInt(amountInput.value, 10);
+  const network = networkInput ? networkInput.value : "—";
+  const phone = phoneInput ? phoneInput.value : "";
+  const accountName = accountInput ? accountInput.value : "";
 
-  if (!amountInput) {
-
+  if (isNaN(amount) || amount <= 0) {
+    alert("Tafadhali weka kiasi sahihi.");
     return;
-
   }
 
-
-  const amount =
-    parseInt(
-      amountInput.value
-    );
-
-
-  if (
-    isNaN(amount) ||
-    amount <= 0
-  ) {
-
-    alert(
-      "Tafadhali weka kiasi sahihi."
-    );
-
+  if (amount > salio) {
+    alert("Kiasi hiki kinazidi salio lako la sasa.");
     return;
-
   }
 
-
-  if (
-    amount > salio
-  ) {
-
-    alert(
-      "Kiasi hiki kinazidi salio lako la sasa."
-    );
-
-    return;
-
-  }
-
-
-  closeModal(
-    "withdrawModal"
-  );
-
-
-  const errorModal =
-    document.getElementById(
-      "errorModal"
-    );
-
-
-  if (errorModal) {
-
-    errorModal.style.display =
-      "flex";
-
-  }
-
+  closeModal("withdrawModal");
+  showWithdrawalReceipt(amount, network, phone, accountName);
 }
 
 

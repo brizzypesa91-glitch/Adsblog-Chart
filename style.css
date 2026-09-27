@@ -4076,3 +4076,246 @@ body.chat-room-open .floating-actions,body.chat-room-open .floating-whatsapp{dis
     max-width:none!important;
   }
 }
+
+/* =========================================================
+   TUTORIAL POPUPS + WITHDRAWAL RECEIPT
+   ========================================================= */
+.btn-register-main.tutorial-trigger{
+  appearance:none;
+  -webkit-appearance:none;
+  border:0;
+  font:inherit;
+  cursor:pointer;
+  text-align:center;
+  width:100%;
+}
+
+.btn-withdraw-tutorial{
+  width:100%;
+  min-height:48px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  padding:11px 16px;
+  border:1px solid rgba(50,229,239,.30);
+  border-radius:14px;
+  color:#bffcff;
+  background:linear-gradient(145deg,#102c35,#0b1f27);
+  box-shadow:0 10px 28px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.04), 0 0 18px rgba(50,229,239,.05);
+  font-size:13px;
+  font-weight:850;
+  cursor:pointer;
+  transition:transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+.btn-withdraw-tutorial:hover{
+  transform:translateY(-1px);
+  border-color:rgba(112,237,241,.65);
+  box-shadow:0 14px 32px rgba(0,0,0,.30),0 0 22px rgba(50,229,239,.12);
+}
+.tutorial-btn-icon{
+  width:30px;height:30px;border-radius:10px;display:grid;place-items:center;
+  color:#55eaf0;background:rgba(50,229,239,.10);border:1px solid rgba(50,229,239,.18);
+}
+.tutorial-chevron{margin-left:auto;font-size:22px;line-height:1;color:#55eaf0}
+
+a.tutorial-primary-btn,
+button.tutorial-secondary-btn{
+  width:100%;
+  min-height:48px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  border-radius:14px;
+  text-decoration:none;
+  font-size:13px;
+  font-weight:900;
+  cursor:pointer;
+}
+.tutorial-primary-btn{
+  color:#041114;
+  background:linear-gradient(100deg,#11bdc8,#35e5ef);
+  box-shadow:0 10px 28px rgba(50,229,239,.18);
+}
+.tutorial-primary-btn span,.tutorial-secondary-btn span{font-size:22px;line-height:1}
+.tutorial-secondary-btn{
+  border:1px solid rgba(50,229,239,.34);
+  color:#aef9fc;
+  background:#0c2027;
+}
+
+.tutorial-overlay,.receipt-overlay{z-index:10020!important;}
+.tutorial-modal-card,
+.receipt-modal-card{
+  width:min(94vw,500px)!important;
+  max-height:92vh;
+  overflow:auto;
+  border-radius:24px!important;
+  background:linear-gradient(145deg,#0e2028,#08151b)!important;
+  border:1px solid rgba(50,229,239,.28)!important;
+  color:#f2fcff!important;
+  box-shadow:0 28px 80px rgba(0,0,0,.62),0 0 40px rgba(0,213,230,.08),inset 0 1px 0 rgba(255,255,255,.04)!important;
+  padding:22px!important;
+}
+.tutorial-modal-card h3{
+  margin:4px 42px 8px 0;
+  font-size:24px;
+  letter-spacing:-.6px;
+  color:#f4feff;
+}
+.tutorial-subtitle{
+  color:#91adb5;
+  font-size:12px;
+  line-height:1.55;
+  margin-bottom:15px;
+}
+.tutorial-icon{
+  width:58px;height:58px;border-radius:50%;display:grid;place-items:center;
+  color:#54e9ef;background:rgba(50,229,239,.08);border:1px solid rgba(50,229,239,.35);
+  box-shadow:0 0 25px rgba(50,229,239,.08);
+  margin:0 auto 13px;
+}
+.withdraw-tutorial-icon{color:#a9b8ff;border-color:rgba(126,145,255,.32);background:rgba(94,113,255,.08)}
+.tutorial-close{top:18px!important;right:18px!important;}
+.tutorial-video-wrap{
+  width:100%;
+  overflow:hidden;
+  border-radius:17px;
+  background:#000;
+  border:1px solid rgba(255,255,255,.07);
+  box-shadow:0 14px 36px rgba(0,0,0,.36);
+  margin-bottom:15px;
+}
+.tutorial-video{
+  display:block;
+  width:100%;
+  max-height:55vh;
+  background:#000;
+  aspect-ratio:9/16;
+  object-fit:contain;
+}
+body.tutorial-open{overflow:hidden}
+
+.receipt-modal-card{text-align:center!important;}
+.receipt-status-icon{
+  width:64px;height:64px;margin:0 auto 12px;border-radius:50%;display:grid;place-items:center;
+  color:#55eaf0;background:rgba(50,229,239,.08);border:1px solid rgba(50,229,239,.28);
+}
+.receipt-status-icon.is-success{color:#3ff2a0;background:rgba(63,242,160,.08);border-color:rgba(63,242,160,.30)}
+.receipt-spinner{
+  width:25px;height:25px;border-radius:50%;border:3px solid rgba(84,233,239,.18);border-top-color:#55e9ef;animation:receiptSpin .8s linear infinite;
+}
+@keyframes receiptSpin{to{transform:rotate(360deg)}}
+.receipt-kicker{font-size:9px;letter-spacing:1.4px;font-weight:900;color:#55e9ef;margin-bottom:6px}
+.receipt-modal-card h3{font-size:22px;margin-bottom:7px}
+.receipt-message{font-size:12px;line-height:1.5;color:#8da5ad;margin-bottom:15px}
+.receipt-box{
+  display:grid;grid-template-columns:1fr 1fr;gap:8px;text-align:left;padding:12px;
+  border-radius:16px;background:#0b1b22;border:1px solid rgba(255,255,255,.055);
+}
+.receipt-box div{padding:9px;border-radius:10px;background:rgba(255,255,255,.025)}
+.receipt-box span{display:block;color:#6f8992;font-size:9px;margin-bottom:4px}
+.receipt-box strong{display:block;color:#e8fbfd;font-size:11px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.receipt-progress{height:5px;border-radius:99px;background:#10272f;overflow:hidden;margin:15px 0 9px}
+.receipt-progress span{display:block;width:15%;height:100%;border-radius:99px;background:linear-gradient(90deg,#0fb9c4,#58f0f2);transition:width 1.5s ease}
+.receipt-footer{font-size:10px;color:#6f8992}
+
+@media(max-width:480px){
+  .tutorial-modal-card,.receipt-modal-card{padding:18px!important;border-radius:21px!important}
+  .tutorial-modal-card h3{font-size:21px}
+  .tutorial-video{max-height:52vh}
+  .receipt-box{gap:6px;padding:9px}
+}
+
+/* =========================================================
+   FINAL POLISH — MINI DASHBOARD + DISTINCT WITHDRAW TUTORIAL
+   ========================================================= */
+/* Keep tutorial viewers distraction-free: no floating controls while either video is open. */
+body.tutorial-open .floating-actions,
+body.tutorial-open .floating-whatsapp,
+body.tutorial-open .floating-btn { display:none!important; }
+
+/* Smaller header so more guest profiles remain visible. */
+.lughapay-header{padding:2px 0!important;min-height:52px!important}
+.logo-circle{width:42px!important;height:42px!important}
+.brand-text h2{font-size:16px!important;line-height:1.05!important}
+.brand-text p{font-size:9px!important;margin-top:2px!important}
+.header-right{gap:6px!important}
+.icon-circle{width:40px!important;height:40px!important}
+
+/* Compact hero — less vertical space, same identity. */
+.header-banner{padding:15px 15px 13px!important;border-radius:18px!important}
+.header-banner h2{font-size:21px!important;line-height:1.08!important}
+.header-banner p{font-size:10px!important;line-height:1.4!important;margin:7px 0 10px!important}
+.btn-customer-care{min-height:34px!important;padding:7px 12px!important;border-radius:12px!important;font-size:10px!important}
+
+/* Mini coloured finance cards: green / orange / blueberry. */
+.cards-grid{gap:6px!important;margin-top:6px!important}
+.cards-grid .card{min-height:76px!important;padding:9px 9px!important;border-radius:14px!important;box-shadow:0 8px 18px rgba(0,0,0,.18),inset 0 1px 0 rgba(255,255,255,.08)!important}
+.cards-grid .profit-card{background:linear-gradient(145deg,#116b55,#0b493d)!important;border-color:rgba(61,239,177,.25)!important}
+.cards-grid .card:nth-child(2){background:linear-gradient(145deg,#b96a19,#7c4312)!important;border-color:rgba(255,193,91,.28)!important}
+.cards-grid .card:nth-child(3){background:linear-gradient(145deg,#3450a8,#243572)!important;border-color:rgba(116,151,255,.28)!important}
+.cards-grid .card-title{font-size:7.5px!important;letter-spacing:.3px!important;color:rgba(255,255,255,.82)!important;margin-bottom:3px!important}
+.cards-grid .card-amount{font-size:15px!important;line-height:1.05!important;color:#fff!important;margin-top:2px!important}
+.cards-grid .card-desc{font-size:7px!important;line-height:1.2!important;color:rgba(255,255,255,.68)!important;margin-top:3px!important;min-height:0!important}
+.cards-grid .ui-icon{transform:scale(.82)!important;transform-origin:left center!important}
+.cards-grid .btn-action{min-height:22px!important;height:22px!important;margin-top:4px!important;padding:3px 8px!important;border-radius:8px!important;background:#ffd36a!important;color:#3d2500!important;font-size:8px!important;box-shadow:0 4px 10px rgba(0,0,0,.15)!important}
+
+/* Distinct colour for the withdrawal tutorial button. */
+.btn-withdraw-tutorial{
+  min-height:38px!important;
+  padding:8px 12px!important;
+  margin-top:1px!important;
+  border-radius:12px!important;
+  border:1px solid rgba(180,145,255,.38)!important;
+  color:#f1eaff!important;
+  background:linear-gradient(145deg,#47317d,#2c2057)!important;
+  box-shadow:0 9px 22px rgba(0,0,0,.24),0 0 18px rgba(151,104,255,.10)!important;
+  font-size:10px!important;
+}
+.btn-withdraw-tutorial:hover{border-color:rgba(204,180,255,.68)!important;background:linear-gradient(145deg,#543a91,#342463)!important}
+.tutorial-btn-icon{width:25px!important;height:25px!important;border-radius:8px!important;color:#d8c5ff!important;background:rgba(185,151,255,.12)!important;border-color:rgba(185,151,255,.22)!important}
+.tutorial-chevron{font-size:18px!important;color:#d8c5ff!important}
+
+/* Registration CTA slightly tighter. */
+.btn-register-main{min-height:40px!important;border-radius:12px!important;font-size:12px!important}
+
+/* Guest cards: compact enough to show more people without looking cramped. */
+.wazungu-list{gap:8px!important}
+.mzungu-card{padding:10px!important;border-radius:16px!important}
+.mzungu-header{gap:9px!important;margin-bottom:7px!important}
+.mzungu-card .avatar{width:50px!important;height:50px!important;min-width:50px!important;min-height:50px!important}
+.mzungu-info h4{font-size:15px!important}
+.mzungu-info .meta,.meta,.online-line{font-size:9px!important}
+.rating-line{font-size:9px!important}
+.date-chip{padding:5px 7px!important;font-size:8px!important;border-radius:10px!important}
+.mzungu-bio{font-size:9px!important;line-height:1.3!important}
+
+/* Price and chat remain slim full-card controls, not thick pills. */
+.mzungu-card .partner-price,
+.mzungu-card .reference-start-chat,
+.mzungu-card .guest-action.reference-start-chat{
+  width:100%!important;
+  min-width:0!important;
+  max-width:none!important;
+  box-sizing:border-box!important;
+  margin-left:0!important;
+  margin-right:0!important;
+}
+.mzungu-card .partner-price{height:34px!important;min-height:34px!important;padding:5px 10px!important;border-radius:10px!important;margin-top:6px!important;margin-bottom:5px!important}
+.mzungu-card .partner-price strong{font-size:12px!important;text-align:center!important}
+.mzungu-card .reference-start-chat,
+.mzungu-card .guest-action.reference-start-chat{height:32px!important;min-height:32px!important;padding:5px 10px!important;border-radius:10px!important;font-size:10px!important;text-align:center!important}
+
+@media(max-width:600px){
+  .app-container{gap:7px!important}
+  .lughapay-header{min-height:48px!important}
+  .header-banner{padding:14px 13px 12px!important}
+  .header-banner h2{font-size:20px!important}
+  .cards-grid{gap:5px!important}
+  .cards-grid .card{min-height:72px!important;padding:8px!important}
+  .cards-grid .card-amount{font-size:14px!important}
+  .btn-withdraw-tutorial{min-height:36px!important}
+  .mzungu-card{padding:9px!important;border-radius:15px!important}
+}

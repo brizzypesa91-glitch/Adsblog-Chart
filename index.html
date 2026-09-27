@@ -56,7 +56,7 @@
 
     <!-- HEADER YA MFUMO -->
     <div class="header-banner">
-      <h2>Ongea <span>Kiswahili</span>, Pata Malipo</h2>
+      <h2>Chat <span>Kiswahili</span>, Pata Malipo</h2>
       <p>Wageni wanaojifunza kiswahili wapo mtandaoni sasa,chagua muda ,chat nao na upokee malipo yako.</p>
       <a href="https://wa.me/255775607316?text=Habari%20boss%2C%20naomba%20unielekeze%20kuhusu%20Adsblog Chart" class="btn-customer-care" style="text-decoration: none; display: inline-block; text-align: center;">
   <span class="inline-support-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13a8 8 0 0 1 16 0"/><path d="M4 13v4a2 2 0 0 0 2 2h1v-6H6a2 2 0 0 0-2 0Zm16 0v4a2 2 0 0 1-2 2h-1v-6h1a2 2 0 0 1 2 0Z"/><path d="M15 19c-.7 1-1.8 1.5-3 1.5"/></svg></span>Wasiliana na Customer Care
@@ -84,8 +84,17 @@
       </div>
     </div>
 
+    <!-- VIDEO YA NAMNA YA KUTOA PESA -->
+    <button type="button" class="btn-withdraw-tutorial" onclick="openTutorialModal('withdrawTutorialModal')">
+      <span class="tutorial-btn-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+      </span>
+      <span>Namna ya Kutoa Pesa</span>
+      <span class="tutorial-chevron" aria-hidden="true">›</span>
+    </button>
+
     <!-- KITUFE KIKUU CHA USAJILI -->
-    <a href="https://adsblog.app/page/reg.php?reg=ALMAS" class="btn-register-main">Fungua Account Hapa <span aria-hidden="true">›</span></a>
+    <button type="button" class="btn-register-main tutorial-trigger" onclick="openTutorialModal('registerTutorialModal')">Fungua Account Hapa <span aria-hidden="true">›</span></button>
 
     <!-- ORODHA YA WAZUNGU (30) -->
     <div class="section-title">
@@ -229,7 +238,7 @@
     </div>
 
     <!-- KITUFE CHA CHINI CHA USAJILI -->
-    <a href="https://adsblog.app/page/reg.php?reg=ALMAS" class="btn-register-main">Jisajili hapa</a>
+    <button type="button" class="btn-register-main tutorial-trigger" onclick="openTutorialModal('registerTutorialModal')">Jisajili hapa <span aria-hidden="true">›</span></button>
 
   </div>
 
@@ -294,11 +303,68 @@
       <div style="font-size: 12px; color: #a0aec0; margin-bottom: 15px;" id="modalSalioText">Salio: TZS 0</div>
       <form onsubmit="handleWithdrawSubmit(event)">
         <div class="form-group"><label>Kiasi (TZS)</label><input type="number" id="withdrawAmount" class="form-control" required></div>
-        <div class="form-group"><label>Mtandao</label><select class="form-control"><option>Vodacom</option><option>Tigo</option><option>Airtel</option><option>Halotel</option></select></div>
-        <div class="form-group"><label>Namba ya Simu</label><input type="tel" class="form-control" required></div>
-        <div class="form-group"><label>Jina la Akaunti</label><input type="text" class="form-control" required></div>
+        <div class="form-group"><label>Mtandao</label><select id="withdrawNetwork" class="form-control"><option>Vodacom</option><option>Tigo</option><option>Airtel</option><option>Halotel</option></select></div>
+        <div class="form-group"><label>Namba ya Simu</label><input type="tel" id="withdrawPhone" class="form-control" required></div>
+        <div class="form-group"><label>Jina la Akaunti</label><input type="text" id="withdrawAccountName" class="form-control" required></div>
         <button type="submit" class="btn-submit">Wasilisha Ombi</button>
       </form>
+    </div>
+  </div>
+
+  <!-- TUTORIAL: JINSI YA KUJISAJILI -->
+  <div class="modal-overlay tutorial-overlay" id="registerTutorialModal" aria-hidden="true">
+    <div class="modal-card tutorial-modal-card">
+      <button class="close-btn tutorial-close" onclick="closeTutorialModal('registerTutorialModal')" aria-label="Funga">✕</button>
+      <div class="tutorial-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l3 3v15H6z"/><path d="M15 3v4h4"/><path d="M9 12h6M9 16h6M9 8h2"/></svg>
+      </div>
+      <h3>Namna ya Kujisajili</h3>
+      <p class="tutorial-subtitle">Tazama video hii kwa umakini ili uweze kujisajili kirahisi.</p>
+      <div class="tutorial-video-wrap">
+        <video id="registerTutorialVideo" class="tutorial-video" controls playsinline preload="metadata" muted>
+          <source src="namna-kujisajili.mp4" type="video/mp4">
+        </video>
+      </div>
+      <a href="https://adsblog.app/page/reg.php?reg=ALMAS" class="tutorial-primary-btn">Fungua Account Yako Sasa <span>›</span></a>
+    </div>
+  </div>
+
+  <!-- TUTORIAL: JINSI YA KUTOA PESA -->
+  <div class="modal-overlay tutorial-overlay" id="withdrawTutorialModal" aria-hidden="true">
+    <div class="modal-card tutorial-modal-card">
+      <button class="close-btn tutorial-close" onclick="closeTutorialModal('withdrawTutorialModal')" aria-label="Funga">✕</button>
+      <div class="tutorial-icon withdraw-tutorial-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+      </div>
+      <h3>Namna ya Kutoa Pesa</h3>
+      <p class="tutorial-subtitle">Tazama hatua za kuwasilisha ombi la kutoa pesa.</p>
+      <div class="tutorial-video-wrap">
+        <video id="withdrawTutorialVideo" class="tutorial-video" controls playsinline preload="metadata" muted>
+          <source src="namna-kutoa-pesa.mp4" type="video/mp4">
+        </video>
+      </div>
+      <button type="button" class="tutorial-secondary-btn" onclick="closeTutorialModal('withdrawTutorialModal');openWithdrawModal()">Toa Pesa Sasa <span>›</span></button>
+    </div>
+  </div>
+
+  <!-- RECEIPT YA OMBI LA KUTOA PESA -->
+  <div class="modal-overlay receipt-overlay" id="withdrawReceiptModal" aria-hidden="true">
+    <div class="modal-card receipt-modal-card">
+      <div class="receipt-status-icon" id="withdrawReceiptIcon" aria-hidden="true">
+        <span class="receipt-spinner"></span>
+      </div>
+      <div class="receipt-kicker">WITHDRAWAL REQUEST</div>
+      <h3 id="withdrawReceiptTitle">Ombi linatumwa...</h3>
+      <p id="withdrawReceiptMessage" class="receipt-message">Tafadhali subiri tunatuma taarifa za ombi lako.</p>
+      <div class="receipt-box">
+        <div><span>Kiasi</span><strong id="receiptAmount">TZS 0</strong></div>
+        <div><span>Mtandao</span><strong id="receiptNetwork">—</strong></div>
+        <div><span>Namba</span><strong id="receiptPhone">—</strong></div>
+        <div><span>Jina la akaunti</span><strong id="receiptAccount">—</strong></div>
+        <div><span>Reference</span><strong id="receiptReference">VP-000000</strong></div>
+      </div>
+      <div class="receipt-progress"><span id="receiptProgressBar"></span></div>
+      <div class="receipt-footer" id="receiptFooter">Inachakata ombi...</div>
     </div>
   </div>
 
@@ -308,7 +374,7 @@
       <div class="error-icon">!</div>
       <h3 style="color: #ff4d4d; margin-bottom: 10px;">Account Haijathibitishwa</h3>
       <p style="font-size: 13px; color: #a0aec0; margin-bottom: 20px;">Tafadhali fungua account rasmi ili uweze kutoa pesa zako ulizochuma.</p>
-      <a href="https://adsblog.app/page/reg.php?reg=ALMAS" class="btn-register-main">Jisajili hapa</a>
+      <a href="https://adsblog.app/page/reg.php?reg=ALMAS" class="btn-register-main">Jisajili hapa <span aria-hidden="true">›</span></a>
     </div>
   </div>
 
