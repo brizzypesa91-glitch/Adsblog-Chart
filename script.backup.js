@@ -2106,33 +2106,30 @@ function renderWazungu() {
       const topic = partner.interests?.slice(0, 2).join(" • ") || "Kiswahili • Mazungumzo";
 
       card.innerHTML = `
-        <div class="mzungu-topline">
-          <div class="mzungu-profile">
-            <div class="avatar-wrap">
-              <img src="${avatarUrl}" class="avatar" alt="${partner.name}, ${partner.age}" loading="lazy">
-              <span class="avatar-online"></span>
-            </div>
-            <div class="mzungu-info">
-              <h4>${partner.name}, ${partner.age}</h4>
-              <div class="meta"><span class="flag-text">${partner.flag}</span> ${partner.country}</div>
-              <div class="online-line"><span class="online-dot"></span> Online</div>
-              <div class="rating-line">★ ${(4.5 + ((partner.id % 5) * 0.1)).toFixed(1)}</div>
-            </div>
+        <div class="mzungu-header">
+          <img src="${avatarUrl}" class="avatar" alt="${partner.name}, ${partner.age}" loading="lazy">
+          <div class="mzungu-info">
+            <h4>${partner.name}, ${partner.age}</h4>
+            <div class="meta"><span class="flag-text">${partner.flag}</span> ${partner.country}<span class="online-dot"></span> Online sasa</div>
+            <div class="profile-topic">${topic}</div>
           </div>
-          <div>
-            <div class="date-chip"><span class="calendar-icon">□</span> Septemba 27</div>
-            <div class="mzungu-topic">
-              <span class="mzungu-topic-label">TOPIC</span>
-              <span class="mzungu-topic-text">${topic}</span>
-            </div>
-          </div>
+          <div class="partner-price"><strong>TZS 8,500 – 180,000</strong></div>
         </div>
-        <div class="partner-price"><strong>TZS 50,000</strong></div>
-        <button class="guest-action guest-chat reference-start-chat" onclick="openTimeSelectModal(${partner.id})">
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5 7.7 7.7 0 0 1-3.4-.8L5 20l1.2-3.5A7.5 7.5 0 1 1 20 11.5Z"/><path d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01"/></svg>
-          ANZA CHAT
-        </button>
-        <div class="price-usd" aria-hidden="true"></div>`;
+        <div class="mzungu-bio">${partner.bio}</div>
+        <div class="mzungu-actions">
+          <button class="guest-action guest-chat" onclick="openTimeSelectModal(${partner.id})">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5 7.7 7.7 0 0 1-3.4-.8L5 20l1.2-3.5A7.5 7.5 0 1 1 20 11.5Z"/><path d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01"/></svg>
+            Chat
+          </button>
+          <button class="guest-action guest-voice" onclick="openTimeSelectModal(${partner.id})">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.7a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6A2 2 0 0 1 22 16.9Z"/></svg>
+            Voice
+          </button>
+          <button class="guest-action guest-video" onclick="openTimeSelectModal(${partner.id})">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="m16 10 5-3v10l-5-3z"/></svg>
+            Video
+          </button>
+        </div>`;
       container.appendChild(card);
     });
 
