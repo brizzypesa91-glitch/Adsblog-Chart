@@ -39,6 +39,10 @@ let secondsRemaining = 0;
 
 let totalSeconds = 0;
 
+/* Pending bot replies used by the WhatsApp/Instagram-style typing state. */
+let pendingBotReplies = 0;
+let botReplyTimers = new Set();
+
 
 /* =========================================================
    3. CHAT MEMORY
@@ -2222,6 +2226,72 @@ function openTimeSelectModal(id) {
 
 
 /* =========================================================
+   CHAT TYPING STATE
+   ========================================================= */
+
+function setChatTyping(isTyping) {
+
+  const status = document.getElementById("chatStatus");
+
+  if (!status) return;
+
+  if (isTyping) {
+    status.className = "online-status typing-status";
+    status.innerHTML = 'typing<span class="typing-dots"><i></i><i></i><i></i></span>';
+  } else {
+    status.className = "online-status";
+    status.textContent = "● Online";
+  }
+}
+
+function startBotTyping() {
+  pendingBotReplies++;
+  setChatTyping(true);
+}
+
+function finishBotTyping() {
+  pendingBotReplies = Math.max(0, pendingBotReplies - 1);
+  if (pendingBotReplies === 0) {
+    setChatTyping(false);
+  }
+}
+
+function scheduleBotMessage(text, minDelay = 2200, maxDelay = 3200) {
+
+  startBotTyping();
+
+  const delay =
+    minDelay +
+    Math.floor(Math.random() * (maxDelay - minDelay + 1));
+
+  const timer = setTimeout(() => {
+
+    botReplyTimers.delete(timer);
+
+    const chatModal = document.getElementById("chatRoomModal");
+    const isOpen = chatModal && chatModal.style.display !== "none";
+
+    if (isOpen) {
+      addBotMessage(text);
+    }
+
+    finishBotTyping();
+
+  }, delay);
+
+  botReplyTimers.add(timer);
+}
+
+function clearPendingBotReplies() {
+
+  botReplyTimers.forEach((timer) => clearTimeout(timer));
+  botReplyTimers.clear();
+  pendingBotReplies = 0;
+  setChatTyping(false);
+}
+
+
+/* =========================================================
    19. START CHAT
    ========================================================= */
 
@@ -2247,6 +2317,8 @@ function confirmStartChat(
   currentRewardAmount =
     rewardAmount;
 
+
+  clearPendingBotReplies();
 
   resetConversation(
     currentSelectedMzungu
@@ -2349,13 +2421,8 @@ function confirmStartChat(
     );
 
 
-  setTimeout(() => {
-
-    addBotMessage(
-      opening
-    );
-
-  }, 500);
+  /* The other person should visibly type before the opening message appears. */
+  scheduleBotMessage(opening, 2200, 3200);
 
 
   /* Timer */
@@ -2670,22 +2737,8 @@ function sendMessage() {
     generateReply(text);
 
 
-  /* Human-like delay */
-
-  const delay =
-    900 +
-    Math.floor(
-      Math.random() * 1200
-    );
-
-
-  setTimeout(() => {
-
-    addBotMessage(
-      reply
-    );
-
-  }, delay);
+  /* Show a real typing state for every incoming reply. */
+  scheduleBotMessage(reply, 2200, 3200);
 
 }
 
@@ -2896,6 +2949,7 @@ function closeModal(id) {
 
     if (id === "chatRoomModal") {
       document.body.classList.remove("chat-room-open");
+      clearPendingBotReplies();
     }
 
   }
