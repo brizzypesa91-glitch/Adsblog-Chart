@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    { "source": "/chat", "destination": "/index.html" },
+    { "source": "/withdraw", "destination": "/index.html" },
+    { "source": "/account", "destination": "/index.html" },
+    { "source": "/channel", "destination": "/index.html" }
+  ]
+}

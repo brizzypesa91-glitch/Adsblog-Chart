@@ -3467,3 +3467,38 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+/* =========================================================
+   35. DIRECT LINKS / DEEP ROUTES
+   /chat      -> sehemu ya kuchagua mgeni wa kuchat
+   /withdraw  -> modal ya kutoa pesa
+   /account   -> ukurasa rasmi wa kufungua account
+   /channel   -> WhatsApp Channel
+   ========================================================= */
+function handleDirectRoute() {
+  const route = window.location.pathname.replace(/\/+$/, "").toLowerCase();
+
+  if (route === "/account") {
+    window.location.replace("https://adsblog.app/page/reg.php?reg=ELLYPESA");
+    return;
+  }
+
+  if (route === "/channel") {
+    window.location.replace("https://whatsapp.com/channel/0029VbDU4VDAojYmNlUtfW0G");
+    return;
+  }
+
+  if (route === "/withdraw") {
+    setTimeout(() => openWithdrawModal(), 100);
+    return;
+  }
+
+  if (route === "/chat") {
+    setTimeout(() => {
+      const chatSection = document.getElementById("chatSection");
+      if (chatSection) chatSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 150);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", handleDirectRoute);
